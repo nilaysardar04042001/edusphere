@@ -6,6 +6,7 @@ import './index.css';
 import App from './App.jsx';
 import SplashScreen from './components/SplashScreen.jsx';
 
+// eslint-disable-next-line react-refresh/only-export-components
 function RootComponent() {
     const [showSplash, setShowSplash] = useState(sessionStorage.getItem('visited') !== 'true');
     const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -15,7 +16,7 @@ function RootComponent() {
     useEffect(() => {
         if (showSplash && isOnline) {
             sessionStorage.setItem('visited', 'true');
-            const timer = setTimeout(() => setShowSplash(false), 3000);
+            const timer = setTimeout(() => setShowSplash(false), 33000);
             return () => clearTimeout(timer);
         }
     }, [showSplash, isOnline]);
