@@ -16,7 +16,7 @@ function RootComponent() {
     useEffect(() => {
         if (showSplash && isOnline) {
             sessionStorage.setItem('visited', 'true');
-            const timer = setTimeout(() => setShowSplash(false), 33000);
+            const timer = setTimeout(() => setShowSplash(false), 3000);
             return () => clearTimeout(timer);
         }
     }, [showSplash, isOnline]);
