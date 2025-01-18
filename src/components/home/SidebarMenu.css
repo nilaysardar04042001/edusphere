@@ -59,6 +59,8 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 50%;
+    font-size: 18px;
 }
 
 .mobile-nav {

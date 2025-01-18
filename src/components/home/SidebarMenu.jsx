@@ -6,7 +6,7 @@ import './SidebarMenu.css';
 import logo from '/src/assets/logo.png'
 
 const SidebarMenu = () => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false); // Sidebar collapsed by default
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -19,7 +19,7 @@ const SidebarMenu = () => {
                     <img src={logo} alt="EduSphere Logo" />
                 </div>
                 <button className="toggle-btn" onClick={toggleMenu}>
-                    ☰
+                    {isOpen ? '◀' : '▶'} {/* Arrow toggle button */}
                 </button>
                 <ul>
                     <li title="Home">🏠<span>Home</span></li>
