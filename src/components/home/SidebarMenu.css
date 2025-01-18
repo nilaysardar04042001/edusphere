@@ -52,8 +52,21 @@
     display: inline;
 }
 
+.toggle-btn {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
 @media (max-width: 768px) {
     .sidebar {
         display: none;
+    }
+
+    .mobile-nav {
+        display: flex;
     }
 }
