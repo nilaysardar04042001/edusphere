@@ -1,5 +1,5 @@
 // SidebarMenu.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import './SidebarMenu.css';
 import logo from '/src/assets/logo.png';
