@@ -1,12 +1,22 @@
 // SidebarMenu.jsx
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import './SidebarMenu.css';
 import logo from '/src/assets/logo.png';
 
 const SidebarMenu = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        // Retrieve the saved mode from localStorage or default to false
+        return JSON.parse(localStorage.getItem('isDarkMode')) || false;
+    });
+
+    useEffect(() => {
+        // Apply the dark mode class to the body element
+        document.body.classList.toggle('dark', isDarkMode);
+        // Save the mode preference in localStorage
+        localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+    }, [isDarkMode]);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -17,17 +27,19 @@ const SidebarMenu = () => {
     };
 
     return (
-        <div className={isDarkMode ? 'dark' : ''}>
+        <div>
             <nav className={`sidebar ${isSidebarOpen ? '' : 'close'}`}>
                 <header>
                     <div className="image-text">
                         <span className="image">
                             <img src={logo} alt="Logo" />
                         </span>
-                        <div className="text logo-text">
-                            <span className="name">EduSphere</span>
-                            <span className="profession">Learning Hub</span>
-                        </div>
+                        {isSidebarOpen && (
+                            <div className="text logo-text">
+                                <span className="name">EduSphere</span>
+                                <span className="profession">Learning Hub</span>
+                            </div>
+                        )}
                     </div>
                     <i className='bx bx-chevron-right toggle' onClick={toggleSidebar}></i>
                 </header>
@@ -38,7 +50,7 @@ const SidebarMenu = () => {
                                 <li className="nav-link" key={index}>
                                     <a href="#">
                                         <i className={`bx bx-${item.toLowerCase().replace(' ', '-')}`}></i>
-                                        <span className="text nav-text">{item}</span>
+                                        {isSidebarOpen && <span className="text nav-text">{item}</span>}
                                     </a>
                                 </li>
                             ))}
@@ -49,13 +61,13 @@ const SidebarMenu = () => {
                     <li>
                         <a href="#">
                             <i className='bx bx-user-plus icon'></i>
-                            <span className="text nav-text">Register</span>
+                            {isSidebarOpen && <span className="text nav-text">Register</span>}
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i className='bx bx-log-in icon'></i>
-                            <span className="text nav-text">Login</span>
+                            {isSidebarOpen && <span className="text nav-text">Login</span>}
                         </a>
                     </li>
                     <li className="mode">
@@ -63,7 +75,7 @@ const SidebarMenu = () => {
                             <i className='bx bx-moon icon moon'></i>
                             <i className='bx bx-sun icon sun'></i>
                         </div>
-                        <span className="mode-text text">{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
+                        {isSidebarOpen && <span className="mode-text text">{isDarkMode ? 'Light mode' : 'Dark mode'}</span>}
                         <div className="toggle-switch" onClick={toggleMode}>
                             <span className="switch"></span>
                         </div>
