@@ -1,49 +1,103 @@
 // SidebarMenu.jsx
-
 import 'react';
 import { useState } from 'react';
 import './SidebarMenu.css';
+import 'boxicons'
 import logo from '/src/assets/logo.png'
 
 const SidebarMenu = () => {
-    const [isOpen, setIsOpen] = useState(false); // Sidebar collapsed by default
+   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+   const [isDarkMode, setIsDarkMode] = useState(false);
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+    const toggleMode = () => {
+        setIsDarkMode(!isDarkMode);
     };
 
     return (
-        <>
-            <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
-                <div className="sidebar-logo">
-                    <img src={logo} alt="EduSphere Logo" />
+        <div className={isDarkMode ? 'dark': ''}>
+            <nav className={`sidebar ${isSidebarOpen ? '' : 'close'}`}>
+                <header>
+                    <div className="image-text">
+                            <span className="image">
+                                <img src={logo} alt="Logo" />
+                            </span>
+                        <div className="text logo-text">
+                            <span className="name">Academia Nexus</span>
+                            <span className="profession">Web developer</span>
+                        </div>
+                    </div>
+                    <i className='bx-chevron-right toggle' onClick={toggleSidebar}></i>
+                </header>
+                <div className="menu-bar">
+                    <div className="menu">
+                        <ul className="menu-list">
+                            {['Home', 'About Us', 'Course', 'Virtual Lab', 'Faculty', 'Contact Us'].map((item, index) => (
+                                <li className="nav-link" key={index}>
+                                    <a href="#">
+                                        <i className={`bx-${item.toLowerCase().replace(' ', '-')}-icon`}></i>
+                                        <span className="text nav-text">{item}</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <button className="toggle-btn" onClick={toggleMenu}>
-                    {isOpen ? '◀' : '▶'} {/* Arrow toggle button */}
-                </button>
-                <ul>
-                    <li title="Home">🏠<span>Home</span></li>
-                    <li title="About Us">ℹ️<span>About Us</span></li>
-                    <li title="Courses">📚<span>Courses</span></li>
-                    <li title="Virtual Labs">🧪<span>Virtual Labs</span></li>
-                    <li title="Faculty">👩‍🏫<span>Faculty</span></li>
-                    <li title="Contact Us">📞<span>Contact Us</span></li>
-                    <li title="Login/Signup">🔑<span>Login/Signup</span></li>
+                <div className="bottom-content">
+                    <li>
+                        <a href="#">
+                            <i className='bx-user-plus icon'></i>
+                            <span className="text nav-text">Register</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i className='bx-log-in icon'></i>
+                            <span className="text nav-text">Login</span>
+                        </a>
+                    </li>
+                    <li className="mode">
+                        <div className="sun-moon">
+                            <i className='bx-moon icon moon'></i>
+                            <i className='bx-sun icon sun'></i>
+                        </div>
+                        <span className="mode-text text">{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
+                        <div className="toggle-switch" onClick={toggleMode}>
+                            <span className="switch"></span>
+                        </div>
+                    </li>
+                </div>
+            </nav>
+            {/*Mobile Navigation Bar*/}
+            <nav className={`mobile-nav ${isSidebarOpen ? 'open' : ''}`}>
+                <ul className="mobile-menu">
+                    {['Home', 'About Us', 'Course', 'Virtual Lab', 'Faculty', 'Contact Us'].map((item, index) => (
+                        <li className="nav-link" key={index}>
+                            <a href="#">
+                                <i className={`bx-${item.toLowerCase().replace(' ', '-')}-icon`}></i>
+                            </a>
+                        </li>
+                    ))}
+                    <li>
+                        <a href="#">
+                            <i className='bx-user-plus icon'></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i className='bx-log-in icon'></i>
+                        </a>
+                    </li>
+                    <li className="mode">
+                        <div className="toggle-switch" onClick={toggleMode}>
+                            <span className="switch"></span>
+                        </div>
+                    </li>
                 </ul>
             </nav>
-            <header className="mobile-nav">
-                <ul className="mobile-icons">
-                    <li title="Home">🏠</li>
-                    <li title="About Us">ℹ️</li>
-                    <li title="Courses">📚</li>
-                    <li title="Virtual Labs">🧪</li>
-                    <li title="Faculty">👩‍🏫</li>
-                    <li title="Contact Us">📞</li>
-                    <li title="Login/Signup">🔑</li>
-                </ul>
-            </header>
-        </>
+        </div>
     );
 };
-
 export default SidebarMenu;
