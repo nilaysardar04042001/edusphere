@@ -7,7 +7,6 @@ const App = () => {
     return (
         <div>
             <SidebarMenu />
-            <h1>Welcome to EduSphere</h1>
         </div>
     );
 };

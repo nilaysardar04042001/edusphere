@@ -70,7 +70,6 @@ const SidebarMenu = () => {
                     </li>
                 </div>
             </nav>
-            {/*Mobile Navigation Bar*/}
             <nav className={`mobile-nav ${isSidebarOpen ? 'open' : ''}`}>
                 <ul className="mobile-menu">
                     {['Home', 'About Us', 'Course', 'Virtual Lab', 'Faculty', 'Contact Us'].map((item, index) => (
