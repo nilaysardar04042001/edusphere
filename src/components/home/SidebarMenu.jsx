@@ -37,7 +37,7 @@ const SidebarMenu = () => {
                             {['Home', 'About Us', 'Course', 'Virtual Lab', 'Faculty', 'Contact Us'].map((item, index) => (
                                 <li className="nav-link" key={index}>
                                     <a href="#">
-                                        <i className={`bx-${item.toLowerCase().replace(' ', '-')}-icon`}></i>
+                                        <i className={` bx bx-${item.toLowerCase().replace(' ', '-')}-icon`}></i>
                                         <span className="text nav-text">{item}</span>
                                     </a>
                                 </li>
